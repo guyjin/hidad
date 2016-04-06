@@ -1,0 +1,30 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #111;
+    color: #efefef;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+span {
+    font-weight: 600;
+}
+
+.dad {
+    border-radius: 5px;
+    padding: 1em;
+    font-size: 1.8em;
+    background-color: #333;
+    text-align: center;
+}
+
+.dad h3 {
+    border-bottom: 1px solid #999;
+    margin-top: 0;
+}
