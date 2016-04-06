@@ -17,16 +17,13 @@ span {
 }
 
 .dad {
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 5px;
     padding: 1em;
-    font-size: 1em;
-    margin-bottom: 2em;
+    font-size: 12px;
     text-align: center;
     min-width: 360px;
 }
 
+
 .dad h3 {
-    border-bottom: 1px solid #999;
     margin-top: 0;
 }
