@@ -16,7 +16,8 @@ span {
     font-weight: 600;
 }
 
-.dad {
+.person,
+a {
     padding: 1em;
     font-size: 12px;
     text-align: center;
@@ -24,6 +25,6 @@ span {
 }
 
 
-.dad h3 {
+.person h3 {
     margin-top: 0;
 }
