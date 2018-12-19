@@ -1,5 +1,6 @@
-$(function(){
+jQuery(window).load(function(){
     assignResults();
+    $('.bg').addClass('loaded');
 });
 
 var dads = [
@@ -47,7 +48,7 @@ var others = [
         isMale: true
     },
     {
-        name: "DeeAnne",
+        name: "DeeAnn",
         born:"03/07/1953",
         died:"10/09/2008",
         age:"",
@@ -69,28 +70,48 @@ function createDateObject(string) {
 }
 
 function timeCalcs() {
-    if($('body').hasClass('others')){
-        others.forEach(function(other) {
-            var born = moment(createDateObject(other.born));
-            var died = moment(createDateObject(other.died));
-            other.age = died.diff(born, 'years');
-            other.elapsed = died.toNow(true);
-            other.born = moment(createDateObject(other.born)).format('MMMM Do, YYYY');
-            other.died = moment(createDateObject(other.died)).format('MMMM Do, YYYY');
-            renderTemplate(other);
-        });
+    // if($('body').hasClass('others')){
+    //     others.forEach(function(other) {
+    //         var born = moment(createDateObject(other.born));
+    //         var died = moment(createDateObject(other.died));
+    //         other.age = died.diff(born, 'years');
+    //         other.elapsed = died.toNow(true);
+    //         other.born = moment(createDateObject(other.born)).format('MMMM Do, YYYY');
+    //         other.died = moment(createDateObject(other.died)).format('MMMM Do, YYYY');
+    //         renderTemplate(other);
+    //     });
 
-    } else if($('body').hasClass('dads')){
-        dads.forEach(function(dad) {
-            var born = moment(createDateObject(dad.born));
-            var died = moment(createDateObject(dad.died));
-            dad.age = died.diff(born, 'years');
-            dad.elapsed = died.toNow(true);
-            dad.born = moment(createDateObject(dad.born)).format('MMMM Do, YYYY');
-            dad.died = moment(createDateObject(dad.died)).format('MMMM Do, YYYY');
-            renderTemplate(dad);
-        });
-    }
+    // } else if($('body').hasClass('dads')){
+    //     dads.forEach(function(dad) {
+    //         var born = moment(createDateObject(dad.born));
+    //         var died = moment(createDateObject(dad.died));
+    //         dad.age = died.diff(born, 'years');
+    //         dad.elapsed = died.toNow(true);
+    //         dad.born = moment(createDateObject(dad.born)).format('MMMM Do, YYYY');
+    //         dad.died = moment(createDateObject(dad.died)).format('MMMM Do, YYYY');
+    //         renderTemplate(dad);
+    //     });
+    // }
+
+    others.forEach(function(other) {
+        var born = moment(createDateObject(other.born));
+        var died = moment(createDateObject(other.died));
+        other.age = died.diff(born, 'years');
+        other.elapsed = died.toNow(true);
+        other.born = moment(createDateObject(other.born)).format('MMMM Do, YYYY');
+        other.died = moment(createDateObject(other.died)).format('MMMM Do, YYYY');
+        renderTemplate(other);
+    });
+
+    dads.forEach(function(dad) {
+        var born = moment(createDateObject(dad.born));
+        var died = moment(createDateObject(dad.died));
+        dad.age = died.diff(born, 'years');
+        dad.elapsed = died.toNow(true);
+        dad.born = moment(createDateObject(dad.born)).format('MMMM Do, YYYY');
+        dad.died = moment(createDateObject(dad.died)).format('MMMM Do, YYYY');
+        renderTemplate(dad);
+    });
 
 
 }
@@ -107,7 +128,17 @@ function assignResults() {
 }
 
 function renderTemplate(person) {
-    var template = '<div class="person"><div class="bio"><h3>{{name}}</h3><p>Born {{born}}, died {{died}}.</p><p>{{#isMale}}He{{/isMale}}{{^isMale}}She{{/isMale}} was <span class="age">{{age}}</span> years old.</p></div><div class="elapsed">It\'s been about <span class="elapsed">{{elapsed}}</span> since {{^isMale}}s{{/isMale}}he died.</div></div>'
+    var template = `<div class="person demo-card-square mdl-card mdl-shadow">
+
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">{{name}}</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <p>Born {{born}}.<br> Died {{died}}.</p>
+        <p>{{#isMale}}He{{/isMale}}{{^isMale}}She{{/isMale}} was <span class="age">{{age}}</span> years old.</p>
+        <p>It\'s been about <span class="elapsed">{{elapsed}}</span> since {{^isMale}}s{{/isMale}}he died.</p>        
+    </div>
+    `
     var target = $('.people');
     $(target).append(Mustache.render(template, person));
 }
