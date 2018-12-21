@@ -3,14 +3,15 @@ jQuery(window).load(function(){
     $('.bg').addClass('loaded');
 });
 
-var dads = [
+var people = [
     {
         name: "Tom",
         born:"12/12/1940",
         died:"05/28/2007",
         age:"",
         elapsed:"",
-        isMale: true
+        isMale: true,
+        isDad: true
     },
     {
         name:"Jean",
@@ -18,7 +19,8 @@ var dads = [
         died:"10/12/2000",
         age:"",
         elapsed:"",
-        isMale: true
+        isMale: true,
+        isDad: true
     },
     {
         name:"Ernie",
@@ -26,18 +28,17 @@ var dads = [
         died:"07/08/1996",
         age:"",
         elapsed:"",
-        isMale: true
-    }
-];
-
-var others = [
+        isMale: true,
+        isDad: true
+    },
     {
         name: "Laurine",
         born:"10/5/1929",
         died:"12/21/2015",
         age:"",
         elapsed:"",
-        isMale: false
+        isMale: false,
+        isDad: false
     },
     {
         name: "Kenny",
@@ -45,7 +46,8 @@ var others = [
         died:"11/6/2015",
         age:"",
         elapsed:"",
-        isMale: true
+        isMale: true,
+        isDad: false
     },
     {
         name: "DeeAnn",
@@ -53,7 +55,8 @@ var others = [
         died:"10/09/2008",
         age:"",
         elapsed:"",
-        isMale: false
+        isMale: false,
+        isDad: false
     },
     {
         name: "Michael",
@@ -61,57 +64,29 @@ var others = [
         died:"10/08/1995",
         age:"",
         elapsed:"",
-        isMale: true
+        isMale: true,
+        isDad: false
     }
 ];
+
 
 function createDateObject(string) {
     return Date.parse(string);
 }
 
 function timeCalcs() {
-    // if($('body').hasClass('others')){
-    //     others.forEach(function(other) {
-    //         var born = moment(createDateObject(other.born));
-    //         var died = moment(createDateObject(other.died));
-    //         other.age = died.diff(born, 'years');
-    //         other.elapsed = died.toNow(true);
-    //         other.born = moment(createDateObject(other.born)).format('MMMM Do, YYYY');
-    //         other.died = moment(createDateObject(other.died)).format('MMMM Do, YYYY');
-    //         renderTemplate(other);
-    //     });
 
-    // } else if($('body').hasClass('dads')){
-    //     dads.forEach(function(dad) {
-    //         var born = moment(createDateObject(dad.born));
-    //         var died = moment(createDateObject(dad.died));
-    //         dad.age = died.diff(born, 'years');
-    //         dad.elapsed = died.toNow(true);
-    //         dad.born = moment(createDateObject(dad.born)).format('MMMM Do, YYYY');
-    //         dad.died = moment(createDateObject(dad.died)).format('MMMM Do, YYYY');
-    //         renderTemplate(dad);
-    //     });
-    // }
-
-    others.forEach(function(other) {
-        var born = moment(createDateObject(other.born));
-        var died = moment(createDateObject(other.died));
-        other.age = died.diff(born, 'years');
-        other.elapsed = died.toNow(true);
-        other.born = moment(createDateObject(other.born)).format('MMMM Do, YYYY');
-        other.died = moment(createDateObject(other.died)).format('MMMM Do, YYYY');
-        renderTemplate(other);
+    people.forEach(function(person) {
+        var born = moment(createDateObject(person.born));
+        var died = moment(createDateObject(person.died));
+        person.age = died.diff(born, 'years');
+        person.elapsed = died.toNow(true);
+        person.born = moment(createDateObject(person.born)).format('MMMM Do, YYYY');
+        person.died = moment(createDateObject(person.died)).format('MMMM Do, YYYY');
+        renderTemplate(person);
     });
 
-    dads.forEach(function(dad) {
-        var born = moment(createDateObject(dad.born));
-        var died = moment(createDateObject(dad.died));
-        dad.age = died.diff(born, 'years');
-        dad.elapsed = died.toNow(true);
-        dad.born = moment(createDateObject(dad.born)).format('MMMM Do, YYYY');
-        dad.died = moment(createDateObject(dad.died)).format('MMMM Do, YYYY');
-        renderTemplate(dad);
-    });
+    
 
 
 }
@@ -119,12 +94,6 @@ function timeCalcs() {
 function assignResults() {
     timeCalcs();
 
-    // $('#tomage').html(dads[0].age);
-    // $('#tomelapsed').html(dads[0].elapsed);
-    // $('#jeanage').html(dads[1].age);
-    // $('#jeanelapsed').html(dads[1].elapsed);
-    // $('#laurineage').html(others[0].age);
-    // $('#laurineelapsed').html(others[0].elapsed);
 }
 
 function renderTemplate(person) {
