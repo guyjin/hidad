@@ -1,0 +1,14 @@
+<div class="person demo-card-square mdl-card mdl-shadow" *ngFor="let person of people">
+
+  <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">{{person.name}}</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+      <p>Born {{person.born}}.<br> Died {{person.died}}.</p>
+      <p>
+        <span *ngIf=person.isMale>He</span>
+        <span *ngIf=!person.isMale>She</span> was 
+        <span class="age">{{(person.died | amParse:'MM/DD/YYYY') | amDifference: (person.born | amParse:'MM/DD/YYYY'): 'years'}}</span> years old.
+      </p>
+      <p>It's been about <span class="elapsed">{{(person.died | amParse:'MM/DD/YYYY') | amTimeAgo:true }}</span> since <span *ngIf=!person.isMale>s</span>he died.</p>        
+  </div>

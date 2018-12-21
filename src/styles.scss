@@ -1,3 +1,4 @@
+/* You can add global styles to this file, and also import other style files */
 html {
     height: 100%;
     
@@ -13,14 +14,23 @@ body {
     position: relative;
 }
 
+app-root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+}
+
 .bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    background: #fff url(../img/marco-bonomo-89638-unsplash.jpg) no-repeat bottom center;
+    opacity: 1;
+    background: #fff url(./assets/img/marco-bonomo-89638-unsplash.jpg) no-repeat bottom center;
     background-size: cover;
     background-attachment: fixed;
 
@@ -51,7 +61,7 @@ span {
     font-weight: 600;
 }
 
-.people {
+app-people {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -151,7 +161,7 @@ p:last-of-type {
     }
 }
 
-@media only screen and and (min-device-width: 375px) 
+@media only screen and (min-device-width: 375px) 
 and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
     .person {
         width: 90vw;
