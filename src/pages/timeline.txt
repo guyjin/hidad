@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <style>
+      /* some basic styles for the timeline */
+      .timeline {
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        white-space: nowrap;
+      }
+      .timeline-year {
+        /* style for the year demarcations */
+        flex: 0 0 auto;
+        font-size: 0.9em;
+        text-align: center;
+        color: #999;
+        margin-top: 10px;
+      }
+      .timeline-event {
+        /* style for the event markers */
+        flex: 0 0 auto;
+        position: relative;
+        width: 10px;
+        height: 10px;
+        background: #666;
+        border-radius: 50%;
+        margin: 0 10px;
+      }
+      .timeline-event-label {
+        /* style for the event labels */
+        position: absolute;
+        left: 20px;
+        top: -2px;
+        font-size: 0.8em;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="timeline" class="timeline"></div>
+    <script>
+      // load the JSON data
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          // get the timeline container
+          const timeline = document.getElementById('timeline');
+
+          // iterate through the events in the JSON data
+          data.forEach(event => {
+            // create the event marker and label elements
+            const eventMarker = document.createElement('div');
+            eventMarker.classList.add('timeline-event');
+            const eventLabel = document.createElement('div');
+            eventLabel.classList.add('timeline-event-label');
+            eventLabel.textContent = event.name;
+
+            // add the event marker and label to the timeline
+            timeline.appendChild(eventMarker);
+            timeline.appendChild(eventLabel);
+
+            // if the event has a start and end date, create a range marker
+            if (event.start && event.end) {
+              const rangeMarker = document.createElement('div');
+              rangeMarker.classList.add('timeline-event');
+              rangeMarker.style.width = '100%';
+              rangeMarker.style.marginLeft = '10px';
+              rangeMarker.style.background = '#ddd';
+              timeline.appendChild(rangeMarker);
+            }
+          });
+
+          // create year demarcations
+          const startYear = Math.min(...data.map(event => event.start.year));
+          const endYear = Math.max(...data.map(event => event.end.year));
+          for (let year = startYear; year <= endYear; year++) {
+            const yearMarker = document.createElement('div');
+            yearMarker.classList.add('timeline-year');
+            yearMarker.text
