@@ -1,0 +1,107 @@
+---
+import people from "../lib/personal.json";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="HiDad Timeline">
+    
+    <div class="header">
+        <h1>Hi Dad</h1>
+    </div>
+    <div class="timeline-dates">
+        {people.people.map((person) => (
+            <div class='person'>
+                <div class="timeline-event-label">{person.name}</div>
+                <div class="timeline-event">{person.born}</div>
+                <div class="timeline-event">{person.died}</div>
+                
+            </div>
+        ))}
+    </div>
+    <div id="timeline" class="timeline">
+        
+        <div class="timeline-years">
+            {
+                // create 50 year timeline ending with the current year, divide each year by 12 months
+                Array.from({length: 50}, (_, i) => new Date().getFullYear() - i).map((year) => (
+                    <div class="timeline-year">
+                        <div class="year-number">{year}</div>
+                        <div class="timeline-months">
+                            {Array.from({length: 12}, (_, i) => i + 1).map((month) => (
+                                <div class="timeline-month"></div>
+                            ))}    
+                        </div>
+                    </div>
+                ))
+                
+                            
+                
+                // // create 50 years of timeline starting from the current year counting backwards
+                // Array.from({length: 50}, (_, i) => new Date().getFullYear() - i).map((year) => (
+                //     <div class="timeline-year">{year}</div>
+                // ))
+            }
+        </div>
+    </div>
+</Layout>
+
+<style>
+    
+    /* some basic styles for the header */
+    .header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 1rem;
+    }
+
+    /* some grid layout for desktop */
+    .timeline-dates {}
+    /* some basic styles for the timeline */
+    .timeline {
+        border-top: 1px dotted purple;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .timeline-years {
+            display: grid;
+            grid-template-columns: repeat(50, 1fr);
+            
+        }
+
+    .timeline-year {
+        text-align: center;
+        border-right: 1px solid #000;
+    }
+
+    .year-number {
+        transform-origin: 0 0;
+        transform: rotate(-45deg);
+        font-weight: bold;
+    }
+
+    .timeline-months {
+        margin-top: .5rem;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    .timeline-month {
+        padding: 0 .25vw;
+        height: 10px;
+        border-right: 1px solid #000;
+    }
+
+    .timeline-month:last-child {
+        border-right: none;
+    }
+    
+  </style>
+
