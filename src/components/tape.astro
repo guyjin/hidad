@@ -5,6 +5,11 @@
 
 <div class="timeline-years">
    
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.querySelector('.current-year').scrollIntoView({behavior: "smooth", inline: "center"}) 
+        });
+    </script>
 
         {
             // create 50 year timeline ending with the current year, divide each year by 12 months
@@ -21,10 +26,7 @@
             
                         
             
-            // // create 50 years of timeline starting from the current year counting backwards
-            // Array.from({length: 50}, (_, i) => new Date().getFullYear() - i).map((year) => (
-            //     <div class="timeline-year">{year}</div>
-            // ))
+            
         }
     
     
@@ -51,6 +53,7 @@
 
         &.current-year {
             @apply text-slate-700;
+            scroll-snap-align: center;
         }
     }
 
