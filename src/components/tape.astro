@@ -1,0 +1,72 @@
+---
+    const {events} = Astro.props;
+    const currentYear = new Date().getFullYear();
+---
+
+<div class="timeline-years">
+   
+
+        {
+            // create 50 year timeline ending with the current year, divide each year by 12 months
+            Array.from({length: 50}, (v, i) => currentYear - 25 + i).map((year) => (
+                <div class="timeline-year">
+                    <div class={`year-number  ${year === currentYear ? "current-year" : "" }`}>{year}</div>
+                    <div class="timeline-months">
+                        {Array.from({length: 12}, (_, i) => i + 1).map((month) => (
+                            <div class="timeline-month"></div>
+                        ))}    
+                    </div>
+                </div>
+            ))
+            
+                        
+            
+            // // create 50 years of timeline starting from the current year counting backwards
+            // Array.from({length: 50}, (_, i) => new Date().getFullYear() - i).map((year) => (
+            //     <div class="timeline-year">{year}</div>
+            // ))
+        }
+    
+    
+</div>
+
+<style>
+    /* some basic styles for the timeline */
+    
+
+    .timeline-years {
+            display: grid;
+            grid-template-columns: repeat(50, 1fr);
+            
+        }
+
+    .timeline-year {
+        text-align: center;
+        border-right: 1px solid #000;
+    }
+
+    .year-number {
+        color: lightgray;
+        font-weight: bold;
+
+        &.current-year {
+            @apply text-slate-700;
+        }
+    }
+
+    .timeline-months {
+        margin-top: .5rem;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    .timeline-month {
+        padding: 0 .25vw;
+        height: 10px;
+        border-right: 1px solid #000;
+    }
+
+    .timeline-month:last-child {
+        border-right: none;
+    }
+</style>
