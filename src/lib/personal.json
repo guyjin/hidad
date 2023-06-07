@@ -61,5 +61,14 @@
         "elapsed":"",
         "gender": "male",
         "isDad": false
+    },
+    {
+        "name": "Kathi",
+        "born":"09/28/1946",
+        "died":"06/06/2023",
+        "age":"",
+        "elapsed":"",
+        "gender": "female",
+        "isDad": false
     }
 ]}
