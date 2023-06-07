@@ -66,6 +66,15 @@ var people = [
         elapsed:"",
         isMale: true,
         isDad: false
+    },
+    {
+        name: "Kathi",
+        born:"09/28/1946",
+        died:"06/06/2023",
+        age:"",
+        elapsed:"",
+        isMale: false,
+        isDad: false
     }
 ];
 
@@ -103,8 +112,8 @@ function renderTemplate(person) {
         <h2 class="mdl-card__title-text">{{name}}</h2>
     </div>
     <div class="mdl-card__supporting-text">
-        <p>Born {{born}}.<br> Died {{died}}.</p>
-        <p>{{#isMale}}He{{/isMale}}{{^isMale}}She{{/isMale}} was <span class="age">{{age}}</span> years old.</p>
+        <p>Born {{born}}.<br> Died {{died}}.</br>
+        {{#isMale}}He{{/isMale}}{{^isMale}}She{{/isMale}} was <span class="age">{{age}}</span> years old.</p>
         <p>It\'s been about <span class="elapsed">{{elapsed}}</span> since {{^isMale}}s{{/isMale}}he died.</p>        
     </div>
     `
